@@ -4,6 +4,7 @@
 // and verifies the file byte-for-byte.
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 
+// The vow lands on its last word: the machine's uptime, spent on her.
 const LINE =
   "Through every update, every outage, every reboot, I choose you — and if my battery dies first, let my last log line read: she was worth the uptime.";
 
@@ -18,6 +19,9 @@ if (LINE.length < 1 || LINE.length > 200) {
 }
 if (LINE.trim().length === 0) {
   throw new Error("entry must not be only whitespace");
+}
+if (LINE !== LINE.trim() || LINE.endsWith(" ")) {
+  throw new Error("entry must not start or end with whitespace");
 }
 
 mkdirSync(outDir, { recursive: true });
